@@ -1,0 +1,55 @@
+{% extends 'global/base.html' %}
+
+{% block title %}Feed | {% endblock title %}
+
+{% block content %}
+
+    <!-- Área de Pesquisa -->
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Pesquisar...">
+        <button type="button" id="search-button"><i class="fas fa-search"></i></button>
+        <div class="autocomplete-suggestions" id="autocomplete-list"></div>
+    </div>
+
+        <!-- Dropdown de Filtro -->
+    <div class="filter-container">
+        <div class="filter-container-text">Filtre as histórias dessa página: </div>        
+        <select id="filter-dropdown">
+            <option value="all">Todos</option>
+            {% for categoria in categorias_disponiveis %}
+                <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+            {% endfor %}
+            
+        </select>
+    </div>
+
+
+    <div class="feed" id="feed">
+        {% for  lista_view_individual in lista_view  %}
+            {% include 'epicfantasiesapp/partials/historias.html' %}
+        {% endfor %}
+        <div class="ad-section">
+            <span>Publicidade Paga</span>
+            <img src="https://placehold.co/1200x400" alt="" srcset="">
+        </div>
+    </div>
+
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if lista_view.has_previous %}
+                <a href="?page={{ lista_view.previous_page_number }}">&lsaquo;anterior</a>
+            {% endif %}
+    
+            <span class="current">
+                Página {{ lista_view.number }} de {{ lista_view.paginator.num_pages }}.
+            </span>
+    
+            {% if lista_view.has_next %}
+                <a href="?page={{ lista_view.next_page_number }}">próxima&rsaquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+
+{% endblock content %}

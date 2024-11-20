@@ -1,0 +1,26 @@
+
+
+
+<header>
+    <a href="{% url "epicfantasiesapp:home" %}"><div class="logo">⚔ EpicFantasies</div></a>
+    <nav>
+        <ul id="nav-menu">
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url "epicfantasiesapp:feed" %}" class="button">Feed</a></li>
+                <li><a href="{% url "epicfantasiesapp:meuPerfilU" %}" class="button">Meu Perfil</a></li> 
+                <li><a href="{% url "epicfantasiesapp:sair" %}" class="button">Sair</a></li>                              
+            {% endif %}
+
+            {% if not request.user.is_authenticated  %}
+                <li><a href="{% url "epicfantasiesapp:entrar" %}" class="button">Entrar</a></li>
+                <li><a href="{% url "epicfantasiesapp:cadastrar" %}" class="button">Cadastrar</a></li>            
+            {% endif %}
+
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+</header>

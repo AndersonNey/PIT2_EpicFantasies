@@ -1,0 +1,411 @@
+
+
+
+.search-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 80px 0 20px;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#search-bar {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+}
+
+#search-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#search-button i {
+    font-size: 16px;
+}
+
+#search-button:hover {
+    background-color: #45a049;
+}
+
+.autocomplete-suggestions {
+    position: absolute;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.autocomplete-suggestion {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocomplete-suggestion:hover {
+    background-color: #e9e9e9;
+}
+
+
+
+.feed {
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#story-card-center{
+    margin: 10px auto;
+}
+
+.story-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    transition: transform 0.3s;
+}
+
+.story-card:hover {
+    transform: translateY(-10px);
+}
+
+.story-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    border-radius: 50%;
+    margin-top: 0px;
+    margin-right: 10px;
+    width: 75px;
+    height: 75px;
+}
+
+.story-info {
+    flex-grow: 1;
+}
+
+.story-info .author{
+    margin: 0;
+}
+
+.story-info .date{
+    margin: 0;
+}
+
+.story-info .title{
+    justify-content: center;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.story-info a {
+    color: black;
+    text-decoration: none;
+}
+
+
+
+.story-content {
+    padding: 0 20px;
+}
+
+.story-content p {
+    margin-bottom: 20px;
+}
+.story-content a {
+    color: black;
+    text-decoration: none;
+}
+
+.story-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.story-footer {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ddd;
+}
+
+.reaction-menu {
+    position: relative;
+}
+
+.reaction-button {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.reaction-button:hover {
+    transform: scale(1.2);
+}
+
+.reaction-options {
+    display: none;
+    position: absolute;
+    top: -50px;
+    left: -10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    flex-direction: row;
+}
+
+.reaction-options span a{
+    text-decoration: none;
+}
+
+
+.reaction-menu:hover .reaction-options {
+    display: flex;
+}
+
+.reaction-options .icone-emoji {
+    font-size: 1.5em;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+
+
+.reaction-options .icone-emoji:hover {
+    transform: scale(1.2);
+}
+
+.emoji-numero{
+    font-size: 0.7em;
+}
+
+.comment-button, .share-button, .report-button {
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s;
+}
+
+.comment-button:hover, .share-button:hover, .report-button:hover {
+    color: #0056b3;
+}
+
+.comment-button:before {
+    content: '💬 ';
+    margin-right: 5px;
+}
+
+.share-button:before {
+    content: '🔗 ';
+    margin-right: 5px;
+}
+
+.report-button:before {
+    content: '⚠️ ';
+    margin-right: 5px;
+}
+
+.report-button {
+    color: #FF0000;
+}
+
+.comments-section {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    display: none;
+}
+
+.comments-section.active {
+    display: block;
+}
+
+.comment-input {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.comment-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.comment-input button {
+    padding: 10px 20px;
+    border: none;
+    background: #007BFF;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.comment-input button:hover {
+    background: #0056b3;
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.comment-avatar {
+    border-radius: 50%;
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.comment-content {
+    background: #f0f0f0;
+    border-radius: 10px;
+    padding: 5px;
+
+    flex-grow: 1;
+}
+
+.comment-author {
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.comment-text {
+    margin: 0;
+    margin-left: 25px ;
+    margin-right: 25px ;
+}
+
+.ad-section {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    transition: transform 0.3s;
+    margin: 0 auto;
+}
+.ad-section span{
+    margin-left: 10px;
+}
+.ad-section  img{
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.pagination{
+width: 600px;
+margin: 0 auto;
+text-align: center;
+justify-content: center;
+}
+
+@media (max-width: 768px) {
+
+    .feed {
+        padding: 10px;
+    }
+
+    .story-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .story-content p {
+        font-size: 0.9em;
+    }
+
+    .story-image {
+        width: 100%;
+    }
+
+    .story-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .story-footer a {
+        margin-bottom: 10px;
+    }
+
+    .reaction-options {
+        top: -40px;
+        left: 0;
+    }
+
+    .search-container {
+        flex-direction: column;
+        margin-top: 60px;
+    }
+
+    #search-bar {
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+
+    #search-button {
+        width: 100%;
+        border-radius: 4px;
+    }
+
+    .autocomplete-suggestions {
+        max-height: 150px;
+    }
+}
+
+.filter-container {
+    display: flex;
+    margin: 0 auto;
+    justify-content: right;
+    max-width: 600px; 
+}
+
+.filter-container-text{
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+#filter-dropdown {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+

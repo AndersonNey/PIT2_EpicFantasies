@@ -1,0 +1,82 @@
+{% extends 'global/base.html' %}
+
+{% block title %}{{page_categoria.nome}} | {% endblock title %}
+
+{% block content %}
+
+    <!-- Área de Pesquisa -->
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Pesquisar...">
+        <button type="button" id="search-button"><i class="fas fa-search"></i></button>
+        <div class="autocomplete-suggestions" id="autocomplete-list"></div>
+    </div>
+
+
+    <div class="feed">
+
+        {% for  lista_view_individual in lista_view  %}
+            <div class="story-card" data-category="{{lista_view_individual.historia.categoria.id}}">
+                <div class="story-header">
+                    {% if lista_view_individual.historia.user.perfil.foto_perfil%}
+                        <img class="avatar" src="{{lista_view_individual.historia.user.perfil.get_foto_perfil_url}}">
+                    {% else %}
+                        <img class="avatar" src="https://placehold.co/200x200">
+                    {% endif %}
+                    <div class="story-info">
+                        <p class="author">{{lista_view_individual.historia.user.username}}</p>
+                        <p class="date">{{lista_view_individual.historia.data_de_criacao|date:"d/m/Y H:i"}}</p>
+                        <p class="date">{{lista_view_individual.historia.categoria.nome}}</p>                       
+                    </div>    
+                </div>
+                <div class="story-info">
+                    <a href="{% url "epicfantasiesapp:storyDetalhes" lista_view_individual.historia.id %}" ><p class="title">{{lista_view_individual.historia.titulo}}</p></a>
+                </div>
+                <div class="story-content">
+                    <a href="{% url "epicfantasiesapp:storyDetalhes" lista_view_individual.historia.id %}" ><p>{{lista_view_individual.historia.previu}}</p></a>
+                    {% if lista_view_individual.historia.foto%}
+                        <a href="{% url "epicfantasiesapp:storyDetalhes" lista_view_individual.historia.id %}" ><img src="{{lista_view_individual.historia.get_foto_story_url}}" alt="Story Image" class="story-image"></a>
+                    {% else %}
+                        <a href="{% url "epicfantasiesapp:storyDetalhes" lista_view_individual.historia.id %}" ><img class="avatar" src="https://placehold.co/600x600"></a>
+                    {% endif %}  
+                </div>
+                <div class="story-footer">
+                    <div class="reaction-menu">
+                        <button class="reaction-button">😊</button>
+                        <div class="reaction-options">
+                            <form  action="{% url 'epicfantasiesapp:emocao' lista_view_individual.historia.id %}" method="post">
+                                {% csrf_token %}
+                                <button class="emocoes" type="submit" value="Excelente" name="emocao">😍</button>
+                                <button class="emocoes" type="submit" value="Bom" name="emocao">😀</button>
+                                <button class="emocoes" type="submit" value="Legal" name="emocao">👍</button>
+                                <button class="emocoes" type="submit" value="Não é tão legal" name="emocao">😢</button>
+                                <button class="emocoes" type="submit" value="Não gostei" name="emocao">😡</button>
+                            </form>
+                        </div>
+                    </div>
+                    <a href="#" class="comment-button">Comentar</a>
+                    <a href="#" class="share-button">Copiar Link</a>
+                    <a href="#" class="report-button">Denunciar</a>
+                </div>
+                <div class="comments-section">
+                    <form action="{% url 'epicfantasiesapp:comentario' lista_view_individual.historia.id %}" method="post" class="comment-input comment-form">
+                        {% csrf_token %}
+                        <input type="text" name="comment" placeholder="Escreva um comentário...">
+                        <button type="submit" class="send-comment">Enviar</button>
+                    </form>
+                    {% for comentario_individual in lista_view_individual.comentario %}
+                        <div class="comment">
+                            <img src="{{comentario_individual.user.perfil.get_foto_perfil_url}}" alt="Avatar" class="comment-avatar">
+                            <div class="comment-content">
+                                <p class="comment-author">{{comentario_individual.user.username}}</p>
+                                <p class="comment-text">{{comentario_individual.valor_comentario}}</p>
+                            </div>
+                        </div>                        
+                    {% endfor %}
+
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock content %}

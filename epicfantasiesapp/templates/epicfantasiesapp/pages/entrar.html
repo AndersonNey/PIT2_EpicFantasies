@@ -1,0 +1,33 @@
+{% extends 'global/base.html' %}
+
+{% block title %}Entrar | {% endblock title %}
+
+{% block content %}
+
+
+
+<div class="login-container">
+    <div class="login-box">
+        {% if messages %}
+            {% for m in messages %}
+                <div class="alert alert-warning" role="alert">
+                    {{ m }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <h2>Entrar</h2>
+        <form action="{% url "epicfantasiesapp:entrar" %}" method="post">
+            {% csrf_token %}
+            <div class="textbox">
+                <input type="text" placeholder="Usuário" name="username" required>
+            </div>
+            <div class="textbox">
+                <input type="password" placeholder="Senha" name="password" required>
+            </div>
+            <button type="submit" class="btn">Entrar</button>
+            <p>Não tem uma conta? <a href="{% url "epicfantasiesapp:cadastrar" %}">Cadastre-se</a></p>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

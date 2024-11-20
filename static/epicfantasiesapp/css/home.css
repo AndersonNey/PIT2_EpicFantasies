@@ -1,0 +1,143 @@
+
+/* thumbnail */
+.thumbnail {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: auto;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.ad-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.close {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+/*  */
+
+
+.content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding-top: 90px;
+    padding-bottom: 20px;
+    color: #333;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.parallax {
+    position: relative;
+    height: 400px;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+#about {
+    background-image:url("../img/imagem1.jpg"); /* Substitua com sua imagem */
+}
+
+#contact {
+    background-image: url("../img/imagem2.jpg"); /* Substitua com sua imagem */
+}
+
+.parallax-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    background: rgba(255, 255, 255, 0);
+    padding: 20px;
+    border-radius: 10px;
+}
+.parallax-content h2{
+    font-size: 2em;
+}
+
+.content-section {
+    padding: 50px 50px;
+    text-align: center;
+}
+
+.content-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.content-section p {
+    font-size: 1.2em;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+
+    .content {
+        padding: 100px 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    .parallax {
+        height: 300px;
+    }
+
+    .parallax-content {
+        padding: 10px;
+    }
+
+    .content-section {
+        padding: 50px 20px;
+    }
+
+    .content-section h2 {
+        font-size: 2em;
+    }
+
+    .content-section p {
+        font-size: 1em;
+    }
+
+
+}
+
+@media (max-width:600px){
+    .thumbnail{
+        width: 100%;
+    }
+}

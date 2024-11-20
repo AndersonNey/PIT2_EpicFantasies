@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    {% include 'epicfantasiesapp/partials/head.html' %}
+
+    <title>{% block title %}{% endblock title %}Epic Fantasies</title>
+</head>
+<body>
+    {% include 'epicfantasiesapp/partials/header.html' %}
+    {% block content %}{% endblock content %}
+    {% include 'epicfantasiesapp/partials/footerScript.html' %}
+</body>
+</html>

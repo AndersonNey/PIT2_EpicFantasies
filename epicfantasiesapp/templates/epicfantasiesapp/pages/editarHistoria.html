@@ -1,0 +1,44 @@
+{% extends 'global/base.html' %}
+
+{% block title %}Editar História | {% endblock title %}
+
+{% block content %}
+
+
+<section id="historias" class="editar-center">
+    <form action="{% url 'epicfantasiesapp:editarHistoria' lista_view.historia.id%}  " method="POST" enctype="multipart/form-data" class="story-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" class="form-control" value="{{lista_view.historia.titulo}}" >
+        </div>
+        <div class="form-group">
+            <label for="previu">Previu:</label>
+            <textarea id="previu" name="previu" class="form-control textarea-height-previu" >{{lista_view.historia.previu}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="conteudo">Conteúdo:</label>
+            <textarea id="conteudo" name="conteudo" class="form-control textarea-height-conteudo">{{lista_view.historia.conteudo}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="foto">Foto: (Caso queira manter a imagem antiga, não faça o envio de outra)</label>
+            <input type="file" id="foto" name="foto" class="form-control-file">
+        </div>
+        <div class="form-group">
+            <label for="is_published">Deseja publicar história?</label><span>(caso não marque, essa história será exibido em sua biblioteca na área de "Não Publicadas")</span><br>
+            {% if lista_view.historia.is_published %}
+                <input type="checkbox" id="is_published" name="is_published" value="on" class="form-control-checkbox" checked> <span> Sim</span>
+            {% else %}
+                <input type="checkbox" id="is_published" name="is_published" value="on" class="form-control-checkbox"> <span> Sim</span>
+            {% endif %}
+            
+        
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar História</button>
+    </form>
+    
+</section>
+
+
+
+{% endblock content %}

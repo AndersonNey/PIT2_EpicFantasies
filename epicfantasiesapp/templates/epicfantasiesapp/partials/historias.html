@@ -1,0 +1,86 @@
+
+<div id="story-card-center" class="story-card" data-category="{{lista_view_individual.historia.categoria.id}}">
+    <div class="story-header">
+        {% if lista_view_individual.historia.user.perfil.foto_perfil%}
+            <img class="avatar" src="{{lista_view_individual.historia.user.perfil.get_foto_perfil_url}}">
+        {% else %}
+            <img class="avatar" src="https://placehold.co/200x200">
+        {% endif %}
+        <div class="story-info">
+            <p class="author">{{lista_view_individual.historia.user.username}}</p>
+            <p class="date">{{lista_view_individual.historia.data_de_criacao|date:"d/m/Y H:i"}}</p>
+            <a href="{% url "epicfantasiesapp:categoria" lista_view_individual.historia.categoria.id %}"><p class="date">{{lista_view_individual.historia.categoria.nome}}</p></a>                       
+        </div>    
+    </div>
+
+    {% if is_feed or is_meuperfil %}
+        <div class="story-info">
+            <a href="{% url "epicfantasiesapp:storyDetalhes" lista_view_individual.historia.id %}" ><p class="title">{{lista_view_individual.historia.titulo}}</p></a>
+        </div>
+        <div class="story-content">
+            <a href="{% url "epicfantasiesapp:storyDetalhes" lista_view_individual.historia.id %}" ><p>{{lista_view_individual.historia.previu}}</p></a>
+            {% if lista_view_individual.historia.foto%}
+                <a href="{% url "epicfantasiesapp:storyDetalhes" lista_view_individual.historia.id %}" ><img src="{{lista_view_individual.historia.get_foto_story_url}}" alt="Story Image" class="story-image"></a>
+            {% else %}
+                
+            {% endif %}  
+        </div>                
+    {% elif is_detalhes %}
+        <div class="story-info">
+            <p class="title">{{lista_view_individual.historia.titulo}}</p>
+        </div>
+        <div class="story-content">
+            <p>{{lista_view_individual.historia.previu}}</p>
+            <p>{{lista_view_individual.historia.conteudo}}</p>
+            {% if lista_view_individual.historia.foto%}
+                <img src="{{lista_view_individual.historia.get_foto_story_url}}" alt="Story Image" class="story-image">
+            {% else %}
+                
+            {% endif %}  
+        </div>         
+    {% endif %}
+
+
+
+    <div class="story-footer">
+        <div class="reaction-menu">
+                <button class="reaction-button">😊</button>
+                <div class="reaction-options">
+                    <span class="icone-emoji"><a class="emoji-link" data-story-id="{{ lista_view_individual.historia.id }}"  data-url="{% url "epicfantasiesapp:emocao" lista_view_individual.historia.id %}?emoji=Excelente" href="#">😀</a></span><span  data-story-id="{{ lista_view_individual.historia.id }}" class="emoji-Excelente emoji-numero">{{lista_view_individual.reacaoExcelente}}</span>
+                    <span class="icone-emoji"><a class="emoji-link" data-story-id="{{ lista_view_individual.historia.id }}" data-url="{% url "epicfantasiesapp:emocao" lista_view_individual.historia.id %}?emoji=Bom" href="#">😍</a></span><span  data-story-id="{{ lista_view_individual.historia.id }}" class="emoji-Bom emoji-numero">{{lista_view_individual.reacaoBom}}</span>
+                    <span class="icone-emoji"><a class="emoji-link" data-story-id="{{ lista_view_individual.historia.id }}" data-url="{% url "epicfantasiesapp:emocao" lista_view_individual.historia.id %}?emoji=Legal" href="#">😢</a></span><span  data-story-id="{{ lista_view_individual.historia.id }}" class="emoji-Legal emoji-numero">{{lista_view_individual.reacaoLegal}}</span>
+                    <span class="icone-emoji"><a class="emoji-link" data-story-id="{{ lista_view_individual.historia.id }}"  data-url="{% url "epicfantasiesapp:emocao" lista_view_individual.historia.id %}?emoji=Naoetaolegal" href="#">😡</a></span><span  data-story-id="{{ lista_view_individual.historia.id }}" class="emoji-Naoetaolegal emoji-numero">{{lista_view_individual.reacaoNaoetaolegal}}</span>
+                    <span class="icone-emoji"><a class="emoji-link" data-story-id="{{ lista_view_individual.historia.id }}" data-url="{% url "epicfantasiesapp:emocao" lista_view_individual.historia.id %}?emoji=Naogostei" href="#">👍</a></span><span  data-story-id="{{ lista_view_individual.historia.id }}" class="emoji-Naogostei emoji-numero">{{lista_view_individual.reacaoNaogostei}}</span> 
+                </div>
+        </div>
+        <a href="#" class="comment-button">Comentários</a>
+        <a href="#" class="share-button copy-link" data-link="{% url "epicfantasiesapp:storyDetalhes" lista_view_individual.historia.id %}" >Copiar Link</a>
+        {% if is_feed or is_detalhes %}
+            {% if not lista_view_individual.historia.user == user %}
+                <a href="#" class="report-button" data-story-id-alert="{{ lista_view_individual.historia.id }}"  >Denunciar</a>
+            {% endif %}
+        {% elif is_meuperfil %}
+            <a href="{% url "epicfantasiesapp:editarHistoria" lista_view_individual.historia.id %}" class="button-edit">Editar História</a>
+        {% endif %}
+    </div>
+
+    <div class="comments-section">
+        
+        <div class="comment-input comment-form">
+            <input type="text" name="comment" placeholder="Escreva um comentário..." id="commentInput{{ lista_view_individual.historia.id }}">
+            <button type="submit" data-story-id-coment{{ lista_view_individual.historia.id }}="{{ lista_view_individual.historia.id }}" class="send-comment" id="sendCommentButton{{ lista_view_individual.historia.id }}">Enviar</button>
+        </div>
+        <div id="commentsList{{ lista_view_individual.historia.id }}">
+        {% for comentario_individual in lista_view_individual.comentario %}
+            <div class="comment" data-story-id-coment-coment="{{ lista_view_individual.historia.id }}">
+                <img src="{{comentario_individual.user.perfil.get_foto_perfil_url}}" alt="Avatar" class="comment-avatar">
+                <div class="comment-content">
+                    <p class="comment-author">{{comentario_individual.user.username}}</p>
+                    <p class="comment-text">{{comentario_individual.valor_comentario}}</p>
+                </div>
+            </div>                        
+        {% endfor %}
+        </div>
+
+    </div>
+</div>

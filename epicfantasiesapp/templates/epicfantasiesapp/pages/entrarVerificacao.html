@@ -1,0 +1,37 @@
+{% extends 'global/base.html' %}
+
+{% block title %}Entrar | {% endblock title %}
+
+{% block content %}
+
+<div class="login-container">
+    <div class="login-box">
+        {% if messages %}
+            {% for m in messages %}
+                <div class="alert alert-warning" role="alert">
+                    {{ m }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <h2>Digite o código de verificação</h2>
+
+        <div class="container-code">
+            
+            <form action="{% url "epicfantasiesapp:codigodeverificacao" %}" method="post">
+                {% csrf_token %}
+                <div class="code-inputs">
+                    <input type="text" maxlength="1" class="code-item" name="codigo1" required>
+                    <input type="text" maxlength="1" class="code-item" name="codigo2" required>
+                    <input type="text" maxlength="1" class="code-item" name="codigo3" required>
+                    <input type="text" maxlength="1" class="code-item" name="codigo4" required>
+                    <input type="text" maxlength="1" class="code-item" name="codigo5" required>
+                    <input type="text" maxlength="1" class="code-item" name="codigo6" required>
+                </div>
+                <button type="submit">Verificar</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

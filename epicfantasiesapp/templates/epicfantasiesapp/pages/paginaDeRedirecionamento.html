@@ -1,0 +1,18 @@
+{% extends 'global/base.html' %}
+
+{% block title %}Redirecionamento | {% endblock title %}
+
+{% block content %}
+
+    <div class="redirecionamento" >
+    {% if not status%}
+        <span>Envio realizado com sucesso</span>
+    {% else %}
+        <span>Aconteceu algum erro</span>
+    {% endif %}
+        <br>
+        <a class="redirecionamento-botao"href="{% url "epicfantasiesapp:entrar" %}">Voltar</a>
+    </div>
+
+
+{% endblock content %}

@@ -1,0 +1,157 @@
+{% extends 'global/base.html' %}
+
+{% block title %}Meu Perfil | {% endblock title %}
+
+{% block content %}
+<div class="profile-container">
+    <aside>
+        <div class="profile-menu">
+            <ul>
+                <li class="active"><a href="#overview">Visão Geral</a></li>
+                <li><a href="#editar">Editar Dados</a></li>                  
+                <li><a href="#historias">Criar Histórias</a></li>
+                <li><a href="#biblioteca">Minha Biblioteca</a></li>
+            </ul>
+        </div>
+    </aside>
+    <main>
+        <section id="overview" class="tab-content active">
+            <div class="circle">
+                {% if request.user.perfil.foto_perfil%}
+                    <img src="{{user.perfil.get_foto_perfil_url}}">
+                {% else %}
+                    <img src="https://placehold.co/200x200">
+                {% endif %}
+                
+            </div>
+            <br>
+            <h2>Olá, {{user.username}} </h2>
+            <p><b>Data de criação do perfil:</b> {{user.perfil.data_criacao|date:"d/m/Y H:i"}} </p>
+            <p><b>Nome:</b> {{user.first_name}}</p>
+            <p><b>Último nome:</b> {{user.last_name}}</p>
+            <p><b>Redes Socias:</b></p>
+            {% if user.redessociais.instagram != "None"%}
+                <p>&emsp;&emsp;<b>Instagram:</b> {{user.redessociais.instagram}}</p>                   
+            {% endif %}
+            {% if user.redessociais.facebook != "None"%}
+                <p>&emsp;&emsp;<b>Facebook:</b> {{user.redessociais.facebook}}</p>
+            {% endif %} 
+            {% if user.redessociais.twitter != "None"%}
+                <p>&emsp;&emsp;<b>X (antigo Twitter):</b> {{user.redessociais.twitter}}</p>
+            {% endif %} 
+            {% if user.redessociais.tiktok != "None"%}
+                <p>&emsp;&emsp;<b>TikTok:</b> {{user.redessociais.tiktok}}</p>
+            {% endif %} 
+
+
+
+            
+            
+            
+            
+        </section>           
+        <section id="editar" class="tab-content">
+            <h2>Editar Dados</h2>
+            <form action="{% url 'epicfantasiesapp:meuPerfilUpdate' %}" method="POST" enctype="multipart/form-data" class="profile-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="first_name">Primeiro Nome:</label>
+                    <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Segundo Nome:</label>
+                    <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="foto_perfil">Foto de Perfil:</label>
+                    <input type="file" id="foto_perfil" name="foto_perfil" class="form-control-file">
+                </div>
+                <div class="form-group">
+                    <label for="instagram">Instagram:</label>
+                    <input type="text" id="instagram" name="instagram" value="{{ user.redessociais.instagram }}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="facebook">Facebook:</label>
+                    <input type="text" id="facebook" name="facebook" value="{{ user.redessociais.facebook }}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="twitter">Twitter:</label>
+                    <input type="text" id="twitter" name="twitter" value="{{ user.redessociais.twitter }}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="tiktok">TikTok:</label>
+                    <input type="text" id="tiktok" name="tiktok" value="{{ user.redessociais.tiktok }}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+            </form>
+            
+        </section>
+        <section id="historias" class="tab-content">
+            <h2>Criar Histórias</h2>
+            <form action="{% url 'epicfantasiesapp:meuPerfilStory' %}" method="POST" enctype="multipart/form-data" class="story-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="titulo">Título:</label>
+                    <input type="text" id="titulo" name="titulo" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label for="previu">Previu:</label>
+                    <textarea id="previu" name="previu" class="form-control textarea-height-previu"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="conteudo">Conteúdo:</label>
+                    <textarea id="conteudo" name="conteudo" class="form-control textarea-height-conteudo"></textarea>
+                </div>
+                <div class="form-group"> 
+                    <label for="id_categoria">Categoria da história:</label>
+                    <select name="categoria" class="opcoes-de-historias" id="id_categoria"> 
+                        {% for categoria in categorias_disponiveis %}
+                            <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>                   
+                <div class="form-group">
+                    <label for="foto">Foto:</label>
+                    <input type="file" id="foto" name="foto" class="form-control-file">
+                </div>
+                <div class="form-group">
+                    <label for="is_published">Deseja publicar história?</label><span>(caso não marque, essa história será exibido em sua biblioteca na área de "Não Publicadas")</span><br>
+                    <input type="checkbox" id="is_published" name="is_published" value="on" class="form-control-checkbox"> <span> Sim</span>
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar História</button>
+            </form>
+            
+        </section>
+        <section id="biblioteca" class="tab-content" class="">
+            <h2>Minha Biblioteca</h2>
+        <div class="container-grid-public-not-public">
+            <h3>PUBLICADO</h3><h3>NÃO PUBLICADO</h3>
+            
+                <div class="item-grid-public">
+                    <div class="flex-item-public">
+                        {% for  lista_view_individual in lista_view_published  %}
+                            {% include 'epicfantasiesapp/partials/historias.html' %}
+                        {% endfor %}
+                    </div>
+                    
+                </div>
+            
+                <div class="item-grid-not-public">
+                    <div class="flex-item-not-public">
+                    {% for  lista_view_individual in lista_view_not_published  %}
+                        {% include 'epicfantasiesapp/partials/historias.html' %}
+                    {% endfor %}
+                    </div>
+                </div>
+                
+                
+            
+        </div>
+
+        </section>
+    </main>
+</div>
+
+{% endblock content %}
+
+

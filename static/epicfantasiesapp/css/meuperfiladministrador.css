@@ -1,0 +1,231 @@
+.profile-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 80px;
+    margin-left: 220px;
+}
+
+aside {
+    width: 200px;
+    background: #fff;
+    border-right: 1px solid #ddd;
+    position: fixed;
+    top: 80px;
+    left: 0;
+}
+
+.profile-menu {
+    padding: 20px;
+}
+
+.profile-menu ul {
+    list-style: none;
+}
+
+.profile-menu ul li {
+    margin-bottom: 10px;
+}
+
+.profile-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.profile-menu ul li.active a {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+main {
+    padding: 20px;
+    flex: 1;
+    width: calc(100% - 220px);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.tab-content p {
+    font-size: 1.2em;
+}
+/* CSS CARD-STORY */
+.card-story-den-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:5px;
+}
+.card-story-den {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 400px;
+  }
+  .card-story-den a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .card-story-den .limits-image{
+    max-height: 250px;
+    overflow: auto;
+  }
+  
+.card-story-den .limits-image img {
+    
+    width: 100%; 
+    border-radius: 8px;
+}
+
+.card-title-den {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+.card-author-den {
+    font-style: italic;
+    margin-bottom: 8px;
+}
+
+.card-date-den {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.card-reports-den {
+    font-size: 12px;
+    color: #FF6347;
+}
+/* CSS CANVAS */
+.container-canva {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.card-canva {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-canva canvas {
+    max-width: 100%;
+    height: auto;
+}
+/* */
+.div-center{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    justify-content: center;
+}
+.div-center img{
+width: 400px;
+
+}
+
+
+/*galeria*/
+.gallery img{
+width: 400px;
+}
+
+@media (max-width: 1024px) {
+    .profile-container {
+        margin-left: 180px;
+    }
+
+    aside {
+        width: 180px;
+    }
+
+    main {
+        width: calc(100% - 180px);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .profile-container {
+        padding-top: 100px;
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    aside {
+        width: 100%;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .profile-menu {
+        padding: 10px;
+    }
+
+    .profile-menu ul {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .profile-menu ul li {
+        margin: 0;
+    }
+
+    .profile-menu ul li a {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    main {
+        padding: 20px 10px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .profile-menu ul li a {
+        font-size: 0.8em;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .tab-content h2 {
+        font-size: 1.2em;
+    }
+
+    .tab-content p {
+        font-size: 0.9em;
+    }
+}

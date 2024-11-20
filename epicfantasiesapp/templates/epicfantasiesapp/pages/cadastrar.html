@@ -1,0 +1,38 @@
+{% extends 'global/base.html' %}
+
+{% block title %}Cadastrar | {% endblock title %}
+
+{% block content %}
+<div class="signup-container">
+    <div class="signup-box">
+        <h2>Cadastrar</h2>
+        {% if messages %}
+            {% for m in messages %}
+                <div class="alert alert-warning" role="alert">
+                    {{ m }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form action="{% url "epicfantasiesapp:cadastrar" %}" method="post">
+            {% csrf_token %}
+            <div class="textbox">
+                <input type="text" placeholder="Usuário" name="username" required>
+            </div>
+            <div class="textbox">
+                <input type="email" placeholder="Email" name="email" required>
+            </div>
+            <div class="textbox">
+                <input type="password" placeholder="Senha" name="password" required>
+            </div>
+            <div class="textbox">
+                <input type="password" placeholder="Confirmer a senha" name="passwordconfirm" required>
+            </div>
+            <button type="submit" class="btn">Cadastrar</button>
+            <p>Já tem uma conta? <a href="{% url "epicfantasiesapp:entrar" %}">Entre</a></p>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
+
+

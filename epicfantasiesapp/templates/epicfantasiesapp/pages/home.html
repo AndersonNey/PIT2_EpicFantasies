@@ -1,0 +1,60 @@
+
+{% extends 'global/base.html' %}
+
+{% block title %}Ínicio | {% endblock title %}
+
+{% block content %}
+
+<div id="thumbnail-ad" class="thumbnail">
+    <span class="close" onclick="closeAd()">&times;</span>
+    <img src="{{imagem_ads}}" alt="Ad Image" class="ad-image">  
+</div>
+
+<script>
+    function closeAd() {
+        document.getElementById('thumbnail-ad').style.display = 'none';
+    }
+</script>
+
+<div class="content" id="home">
+    <h1>Bem-vindo Ao Começo da Jornada</h1>
+    <p>Crie, Publique e Compartilhe suas histórias para outras pessoas Reagirem, Comentarem e Enviarem </p>
+</div>
+<section class="parallax" id="about">
+    <div class="parallax-content">
+        <h2>Deixe Sua Criatividade Livre Para Correr</h2>
+        <div style="display: none;">Imagem por <a href="https://www.pexels.com/pt-br/foto/desenho-de-alienigena-cinza-e-preto-16516/" target="_blank">[khairul nizam]</a> via <a href="https://www.pexels.com" target="_blank">Pexels</a></div>
+    </div>
+</section>
+<section class="content-section" id="services">
+    <h2>Acesse tudo o que você já escreceu em Minha Biblioteca</h2>
+</section>
+<section class="parallax" id="contact">
+    <div class="parallax-content">
+        <h2>Deixe Sua Imaginação Definir A História</h2>
+        <div style="display: none;">Imagem por <a href="https://www.pexels.com/pt-br/foto/homem-maos-mesa-balcao-17046790/" target="_blank">[Czapp Árpád]</a> via <a href="https://www.pexels.com" target="_blank">Pexels</a></div>
+    </div>
+</section>
+<section class="content-section" id="footer">
+    <p>2024 EpicFantasies. Todos os direitos reservados.</p>
+    <p>
+        Aviso: Este site é um projeto acadêmico desenvolvido como parte de uma atividade de faculdade. As imagens utilizadas na página inicial são de caráter meramente ilustrativo, obtidas da plataforma Pexels, e não possuem relação direta com os serviços ou objetivos deste projeto. O uso das imagens não implica afiliação ou endosse por parte dos fotógrafos.
+    </p>
+    <p>
+        Aviso: Este site não coleta nem armazena dados pessoais, dados sensíveis ou informações relacionadas ao gênero. Para a criação de conta, recomendamos o uso de dados fictícios. O único dado necessário é um endereço de e-mail válido, que será utilizado exclusivamente para a confirmação da conta.
+    </p>
+    <p>
+        Aviso: Cuidado com o conteúdo que você criar: As histórias geradas pelos usuários são públicas e podem ser visualizadas por outras pessoas. Pedimos que evite incluir informações pessoais, ofensivas ou de natureza sensível em suas histórias. Também é importante que as imagens enviadas estejam de acordo com as diretrizes de respeito e não infrijam direitos autorais ou conteúdo impróprio.
+    </p>
+    <p>
+        Uso Responsável: Ao utilizar este site, você concorda em não publicar ou compartilhar conteúdo que seja ilegal, difamatório, discriminatório, ou que viole qualquer direito de terceiros, incluindo direitos autorais, privacidade ou propriedade intelectual.
+    </p>
+    <p>
+        Responsabilidade Legal: Este site é uma plataforma de projeto acadêmico e não se responsabiliza pelo conteúdo gerado pelos usuários. Cada usuário é responsável pelo que publica, incluindo textos, imagens e informações compartilhadas.
+    </p>
+    <p>
+        Links Externos: Este site pode conter links para sites de terceiros. Não nos responsabilizamos pelo conteúdo ou práticas de privacidade desses sites e recomendamos que leia suas políticas antes de navegar.
+    </p>
+
+</section>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'global/base.html' %}
+
+{% block title %}Detalhes | {% endblock title %}
+
+{% block content %}
+
+<section id="biblioteca"  class="detail-center">
+
+
+    {% for  lista_view_individual in lista_view  %}
+        {% include 'epicfantasiesapp/partials/historias.html' %}
+    {% endfor %}
+
+
+</section>
+
+
+{% endblock content %}
